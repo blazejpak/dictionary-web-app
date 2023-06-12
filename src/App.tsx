@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div
-      className={`h-screen bg-white p-6 text-[#2D2D2D] transition-all duration-300 dark:bg-[#050505]/95 dark:text-[#FFFFFF]`}
+      className={`max-h-max min-h-[100dvh] bg-white p-6 text-[#2D2D2D] transition-all duration-300  dark:bg-[#050505]/95 dark:text-[#FFFFFF]`}
     >
       <HomePage />
     </div>

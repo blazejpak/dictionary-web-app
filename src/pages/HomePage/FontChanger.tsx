@@ -7,7 +7,6 @@ import { ReactComponent as Arrow } from "../../assets/icon-arrow-down.svg";
 const FontChanger = () => {
   const [font, setFont] = useState("Sans Serif");
   const [fontClicked, setFontclicked] = useState(false);
-  const fontRef = useRef(null);
 
   useEffect(() => {
     if (font === "Mono") {
@@ -23,7 +22,7 @@ const FontChanger = () => {
     }
   }, [font]);
 
-  const fontChangeHandler = (e) => {
+  const fontChangeHandler = () => {
     setFontclicked((prevClicked) => !prevClicked);
   };
 
@@ -62,7 +61,6 @@ const FontChanger = () => {
       <div
         className="flex cursor-pointer items-center gap-4"
         onClick={fontChangeHandler}
-        ref={fontRef}
       >
         <p>{font}</p>
         <Arrow />
