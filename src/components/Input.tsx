@@ -45,6 +45,7 @@ const Input = () => {
           }
           <button className="cursor-pointer" type="submit">
             <Loupe />
+            <p className="hidden">submit</p>
           </button>
         </div>
       </form>
