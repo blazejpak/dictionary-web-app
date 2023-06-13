@@ -7,6 +7,12 @@ import { ReactComponent as HyperLink } from "../../assets/icon-new-window.svg";
 import { useState } from "react";
 
 const ListDetails = () => {
+  interface Meaning {
+    partOfSpeech: string;
+    definitions: { definition: string }[];
+    synonyms: string[];
+  }
+
   const [hover, setHover] = useState(false);
   const error = useSelector((state: RootState) => state.dataSlice.dataError);
   const fetchedData = useSelector(
@@ -15,7 +21,9 @@ const ListDetails = () => {
 
   const playAudioHandler = () => {
     try {
-      const { audio } = fetchedData.phonetics.find((item) => item.audio !== "");
+      const { audio } = fetchedData.phonetics.find(
+        (item: any) => item.audio !== ""
+      );
 
       let audioPlay = new Audio(audio);
       audioPlay.play();
@@ -45,22 +53,28 @@ const ListDetails = () => {
             <h1 className="text-4xl font-bold">{fetchedData.word}</h1>
             <p className="text-lg text-[#A445ED]">{fetchedData.phonetic}</p>
           </div>
-          {fetchedData.phonetics.find((item) => item.audio !== "") && (
+          {fetchedData.phonetics.find((item: any) => item.audio !== "") && (
             <div
               className=" cursor-pointer overflow-hidden rounded-full"
               onMouseEnter={() => setHover(true)}
               onMouseLeave={() => setHover(false)}
             >
               {hover ? (
-                <PlayHover className=" h-12 w-12" onClick={playAudioHandler} />
+                <PlayHover
+                  className=" h-12 w-12 md:h-20 md:w-20"
+                  onClick={playAudioHandler}
+                />
               ) : (
-                <Play className=" h-12 w-12" onClick={playAudioHandler} />
+                <Play
+                  className=" h-12 w-12 md:h-20 md:w-20"
+                  onClick={playAudioHandler}
+                />
               )}
             </div>
           )}
         </div>
         <div>
-          {fetchedData.meanings.map((item, index) => {
+          {fetchedData.meanings.map((item: Meaning, index: number) => {
             return (
               <div key={index} className="mt-8 flex flex-col">
                 <div className="flex items-center justify-center gap-4">
@@ -109,6 +123,7 @@ const ListDetails = () => {
         </div>
       </div>
     );
+  return null;
 };
 
 export default ListDetails;

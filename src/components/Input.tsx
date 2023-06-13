@@ -3,6 +3,7 @@ import { ReactComponent as Loupe } from "../assets/icon-search.svg";
 import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "../store/store";
+import { ChangeEvent, FormEvent } from "react";
 
 const Input = () => {
   const dispatch = useDispatch();
@@ -11,12 +12,12 @@ const Input = () => {
     (state: RootState) => state.inputSlice.inputSubmit
   );
 
-  const inputOnChange = (e) => {
-    dispatch({ type: "inputChanger/textChanger", payload: e.target.value });
+  const inputOnChange = (event: ChangeEvent<HTMLInputElement>) => {
+    dispatch({ type: "inputChanger/textChanger", payload: event.target.value });
   };
 
-  const formSubmitter = (e) => {
-    e.preventDefault();
+  const formSubmitter = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     dispatch({ type: "inputChanger/toggleSubmit" });
   };
