@@ -21,25 +21,35 @@ const Input = () => {
     dispatch({ type: "inputChanger/toggleSubmit" });
   };
 
-  let errorPar;
-
-  if (text === "" && submit) errorPar = "Whoops, can’t be empty…";
+  const inputStyle =
+    "max-[90%] flex h-12 items-center justify-center gap-4 rounded-2xl bg-[#F4F4F4] px-4 dark:bg-[#1F1F1F] md:h-16";
 
   return (
     <section className="mt-12 flex flex-col gap-1 ">
       <form onSubmit={formSubmitter}>
-        <div className="max-[90%] flex h-12 items-center justify-center gap-4 rounded-2xl bg-[#F4F4F4] px-4  focus-within:border focus-within:border-[#A445ED] dark:bg-[#1F1F1F] ">
-          <input
-            className=" w-full bg-transparent font-bold text-[#2D2D2D] caret-[#A445ED] outline-none placeholder:text-[#2D2D2D]  placeholder:text-opacity-25 dark:text-white  dark:placeholder:text-white dark:placeholder:text-opacity-25"
-            placeholder="Search for any word..."
-            onChange={inputOnChange}
-          />
+        <div
+          className={
+            !(text === "" && submit)
+              ? inputStyle +
+                " focus-within:border focus-within:border-[#A445ED]"
+              : inputStyle + " border border-[#FF5252]"
+          }
+        >
+          {
+            <input
+              className=" w-full bg-transparent font-bold text-[#2D2D2D] caret-[#A445ED] outline-none placeholder:text-[#2D2D2D]  placeholder:text-opacity-25 dark:text-white  dark:placeholder:text-white dark:placeholder:text-opacity-25"
+              placeholder="Search for any word..."
+              onChange={inputOnChange}
+            />
+          }
           <button className="cursor-pointer" type="submit">
             <Loupe />
           </button>
         </div>
       </form>
-      <p className="ml-1 text-[#FF5252]">{errorPar}</p>
+      {text === "" && submit && (
+        <p className="ml-1 text-[#FF5252]">Whoops, can’t be empty…</p>
+      )}
     </section>
   );
 };

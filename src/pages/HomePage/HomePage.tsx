@@ -4,7 +4,7 @@ import NavBar from "./NavBar";
 
 const HomePage = () => {
   return (
-    <>
+    <div className="xl:m-auto xl:max-w-4xl">
       <header>
         <NavBar />
       </header>
@@ -12,7 +12,7 @@ const HomePage = () => {
         <Input />
         <FetchDataSection />
       </main>
-    </>
+    </div>
   );
 };
 

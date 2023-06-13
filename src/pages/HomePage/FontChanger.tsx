@@ -12,8 +12,8 @@ const FontChanger = () => {
     if (font === "Mono") {
       document.documentElement.style.fontFamily = "Inconsolata";
       setFontclicked(false);
-    }
-    if (font === "Serif") {
+      console.log(font);
+    } else if (font === "Serif") {
       document.documentElement.style.fontFamily = "Lora";
       setFontclicked(false);
     } else {

@@ -2,9 +2,12 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 
 import { ReactComponent as Play } from "../../assets/icon-play.svg";
+import { ReactComponent as PlayHover } from "../../assets/icon-play-hover.svg";
 import { ReactComponent as HyperLink } from "../../assets/icon-new-window.svg";
+import { useState } from "react";
 
 const ListDetails = () => {
+  const [hover, setHover] = useState(false);
   const error = useSelector((state: RootState) => state.dataSlice.dataError);
   const fetchedData = useSelector(
     (state: RootState) => state.dataSlice.fetchedData
@@ -12,13 +15,14 @@ const ListDetails = () => {
 
   const playAudioHandler = () => {
     try {
-      let audio = new Audio(fetchedData.phonetics[0].audio);
-      audio.play();
+      const { audio } = fetchedData.phonetics.find((item) => item.audio !== "");
+
+      let audioPlay = new Audio(audio);
+      audioPlay.play();
     } catch (error) {
       console.error(error);
     }
   };
-
   if (!fetchedData && error) {
     return (
       <div className="mt-8 flex flex-col items-center gap-3">
@@ -35,23 +39,32 @@ const ListDetails = () => {
 
   if (fetchedData)
     return (
-      <div className="mt-4">
+      <div className="mt-4 md:mt-12">
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-3">
-            <h1>{fetchedData.word}</h1>
-            <p>{fetchedData.phonetic}</p>
+            <h1 className="text-4xl font-bold">{fetchedData.word}</h1>
+            <p className="text-lg text-[#A445ED]">{fetchedData.phonetic}</p>
           </div>
-          <Play
-            className="h-12 w-12 cursor-pointer"
-            onClick={playAudioHandler}
-          />
+          {fetchedData.phonetics.find((item) => item.audio !== "") && (
+            <div
+              className=" cursor-pointer overflow-hidden rounded-full"
+              onMouseEnter={() => setHover(true)}
+              onMouseLeave={() => setHover(false)}
+            >
+              {hover ? (
+                <PlayHover className=" h-12 w-12" onClick={playAudioHandler} />
+              ) : (
+                <Play className=" h-12 w-12" onClick={playAudioHandler} />
+              )}
+            </div>
+          )}
         </div>
         <div>
           {fetchedData.meanings.map((item, index) => {
             return (
               <div key={index} className="mt-8 flex flex-col">
                 <div className="flex items-center justify-center gap-4">
-                  <p className="font-bold">{item.partOfSpeech}</p>
+                  <p className="font-bold italic">{item.partOfSpeech}</p>
                   <div className="h-[1px] w-full bg-[#E9E9E9]"></div>
                 </div>
                 <div className="mt-8">
@@ -81,9 +94,9 @@ const ListDetails = () => {
           })}
         </div>
         <div className="mt-8 h-[1px] w-full bg-[#E9E9E9]"></div>
-        <div className="mt-6">
+        <div className="mt-6 md:flex md:gap-5">
           <p className="text-sm text-[#757575] underline">Source</p>
-          <div className="flex items-center gap-2">
+          <div className="mb-28 flex items-center gap-2">
             <p className="text-sm underline">
               <a href={fetchedData.sourceUrls[0]}>
                 {fetchedData.sourceUrls[0]}
