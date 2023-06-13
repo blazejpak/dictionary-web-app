@@ -4,7 +4,7 @@ import NavBar from "./NavBar";
 
 const HomePage = () => {
   return (
-    <div className="xl:m-auto xl:max-w-4xl">
+    <div className="xl:m-auto xl:max-w-3xl">
       <header>
         <NavBar />
       </header>
