@@ -1,9 +1,57 @@
-# dictionary-web-app
 
-Responsive site with Dictionary API.
+# Dictionary Web App
 
-To create this app. I used React with TS, Redux to manage important states, TailwindCSS to style and I added few animations with Framer.
+Fully responsive Dictionary Web App. The data came from https://dictionaryapi.dev/.
 
-Please check and feel free to send message with any problems.
+* You can type a word to check the meaning of a written word, find synonyms, and hear the correct pronunciation,
+* Possibility to change the font family,
+* Added a button to change a theme between dark and light modes.
 
-https://dictionary-web-app-blazejpak.vercel.app/ 
+
+
+
+## Demo
+
+https://dictionary-web-app-blazejpak.vercel.app/
+
+
+## Tech Stack
+
+* TypeScript
+* React
+* Redux
+* TailwindCSS
+* Framer-Motion
+
+
+
+
+
+## Installation
+1. Clone the repository
+```
+https://github.com/blazejpak/dictionary-web-app.git
+```
+
+2. Change the working directory
+```
+  cd dictionary-web-app
+```
+
+3. Install dependencies
+```
+npm install
+```
+
+4. Run the app
+
+```
+npm run dev
+```
+## Portfolio Website
+Please check my portfolio. <br/>
+ https://portfolio-git-main-blazejpak.vercel.app/
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
